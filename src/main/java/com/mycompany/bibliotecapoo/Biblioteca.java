@@ -24,7 +24,7 @@ public class Biblioteca {
         for (int i = 0; i < libros.size(); i++) {
             Libro libroVisitado = libros.get(i);
             if (libroVisitado.getTitulo().contains(palabraBusqueda) || libroVisitado.getAutor().contains(palabraBusqueda) || libroVisitado.getGenero().contains(palabraBusqueda)) {
-                System.out.println(libroVisitado.mostrarInformacion());
+                //System.out.println(libroVisitado.mostrarInformacion());
                 return libroVisitado;
             }//Cierre if
         }//Cierre for
@@ -33,17 +33,13 @@ public class Biblioteca {
     
     //Metodo para mostrar los libros que hay en la biblioteca
     //Complejidad lineal: O(N) Tiempo lineal.
-    public String mostrarLibros() {
-        for (int i = 0; i < libros.size(); i++) {
-            Libro libro = libros.get(i);
-            System.out.println(libro.mostrarInformacion());
-        }//Cierre for
-        return libros.toString();
+    public LinkedList<Libro> mostrarLibros() {
+        return libros;
     }//Cierre mostrarLibros
 
     //Metodo para mostrar los libros que no estan marcados como leidos en la biblioteca
     //Complejidad lineal: O(N) Tiempo lineal.
-    public String mostrarLibrosNoLeidos() {
+    public LinkedList<Libro> mostrarLibrosNoLeidos() {
         LinkedList<Libro> librosNoLeidos = new LinkedList<>();
         for (int i = 0; i < libros.size(); i++) {
             Libro libroBuscado = libros.get(i);
@@ -52,10 +48,8 @@ public class Biblioteca {
                 System.out.println(libroBuscado.mostrarInformacion());
             } //Cierre if
         }//Cierre for
-        if (librosNoLeidos.isEmpty()) {
-            System.out.println("No hay libros sin leer");
-        } //Cierre if
-        return "Ingrese el nombre del libro correctamente";
+        return librosNoLeidos;
+        
     }//mostrarLibroNoLidos
 
 }//Cierre Class Biblioteca

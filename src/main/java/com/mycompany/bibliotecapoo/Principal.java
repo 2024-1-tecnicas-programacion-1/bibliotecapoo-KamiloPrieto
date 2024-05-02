@@ -1,8 +1,16 @@
 package com.mycompany.bibliotecapoo;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Principal {
+    
+    public static void imprimirLibros(LinkedList<Libro> libros){
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro = libros.get(i);
+            System.out.println(libro.mostrarInformacion());
+        }//Cierre for
+    }
 
     //Metodo main
     //Complejidad temporal: O(1) Tiempo constante
@@ -43,13 +51,14 @@ public class Principal {
                     miBiblioteca.registrarLibro(libroUsuario);
                     break;
                 case 2:
-                    miBiblioteca.mostrarLibros();
-
+                    LinkedList<Libro> libros = miBiblioteca.mostrarLibros();
+                    imprimirLibros(libros);
                     break;
                 case 3:
                     System.out.println("Ingrese su palabra de busqueda");
                     String busqueda = sc.nextLine();
-                    miBiblioteca.buscarLibro(busqueda);
+                    Libro libroEncontrado = miBiblioteca.buscarLibro(busqueda);
+                    System.out.println(libroEncontrado.mostrarInformacion());
                     break;
                 case 4:
                     System.out.println("Ingrese el titulo del libro que desea marcar como leido");
@@ -65,7 +74,11 @@ public class Principal {
                     }//Cierre if
                     break;
                 case 5:
-                    miBiblioteca.mostrarLibrosNoLeidos();
+                    LinkedList<Libro> librosNoLeidos = miBiblioteca.mostrarLibrosNoLeidos();
+                    if (librosNoLeidos.isEmpty()) {
+                        System.out.println("No hay libros sin leer");
+                    } //Cierre if
+                    imprimirLibros(librosNoLeidos);
                     break;
                 case 6:
                     continuar = false;
